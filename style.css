@@ -18,7 +18,7 @@ body {
 }
 
 .snake-node-or {
-	background-color: purple;
+	background-color: blue;
 	height: 12px;
 	width: 12px;
 	position: absolute;
@@ -34,7 +34,7 @@ body {
 }
 
 .connector-v-or {
-	background-color: blue;
+	background-color: blueviolet;
 	height: 8px;
 	width: 12px;
 	position: absolute;
@@ -50,7 +50,7 @@ body {
 }
 
 .connector-h-or {
-	background-color: blue;
+	background-color: blueviolet;
 	height: 12px;
 	width: 8px;
 	position: absolute;
