@@ -17,6 +17,14 @@ body {
 	z-index: 10;
 }
 
+.snake-node-or {
+	background-color: purple;
+	height: 12px;
+	width: 12px;
+	position: absolute;
+	z-index: 10;
+}
+
 .connector-v {
 	background-color: orange;
 	height: 8px;
@@ -25,8 +33,24 @@ body {
 	z-index: 10;
 }
 
+.connector-v-or {
+	background-color: blue;
+	height: 8px;
+	width: 12px;
+	position: absolute;
+	z-index: 10;
+}
+
 .connector-h {
 	background-color: orange;
+	height: 12px;
+	width: 8px;
+	position: absolute;
+	z-index: 10;
+}
+
+.connector-h-or {
+	background-color: blue;
 	height: 12px;
 	width: 8px;
 	position: absolute;
