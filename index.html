@@ -4,7 +4,9 @@
 		<title>Snake</title>
 		<link href="./style.css" type="text/css" rel="stylesheet"/>
     	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    	<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     	<script src="./main.js"></script>
+    	<script src="./load_socket.js"></script>
 	</head>
 	<body>
 		<h1>Snake</h1>
@@ -18,5 +20,23 @@
 				<div class="snake-node" style="top: 24px; left: 4px;"></div>
 			</div>
 		</div>
+
+
+		<div id="user_id">
+		  <form id="user_form" action="">
+		    <input id="user_name" autocomplete="User" /><button>Set Name</button>
+		  </form>
+		  <p>My Name: <span id="name">User</span> </p>
+		  <ul id="online_users"> </ul> 
+		  <p id="currentsquare">Current: <span id="currentcount">0</span></p>
+		  <p id="prev">User</p>
+		</div>
+
+		<ul id="messages">
+		    <li>Let's chat!</li>
+		</ul>
+		<form id="send" action="">
+		    <input id="m" autocomplete="off" /><button>Send</button>
+		</form>
 	</body>
 </html>
