@@ -14,7 +14,7 @@ var ini = false;
 var userID = [];
 var users = [];
 
-
+var start_ready = [];
 var color = [];
 
 //database connection
@@ -77,18 +77,23 @@ io.on('connection', function(socket) {
     var current = count;
     io.emit('current user',current);
 
+    // prepare user info
+
     var this_user_name = "User" + Math.floor(Math.random() * 99);
     users.push(this_user_name);
     userID.push(socket.id);
 
-    
+    //random color generation
     color.push("rgb("+Math.floor(Math.random()*191+64)+","+Math.floor(Math.random()*191+64)+","+Math.floor(Math.random()*191+64)+")");
-//random color generation
-    
 
+    start_ready.push(false);
+
+    // send back user info
     io.emit('update_user', users);
+    io.emit('my_user_id', this_user_name);
     console.log(users);
 
+    // broadcast new user info
     socket.broadcast.emit('new-user', socket.id);      
 
     socket.broadcast.to(userID[0]).emit('request-content', socket.id);
@@ -111,18 +116,24 @@ io.on('connection', function(socket) {
         socket.broadcast.emit('content', msg);
     });
 
-    socket.on('new-file', function(msg){
-        socket.broadcast.emit('new-file', msg);
-    });
-
-    socket.on('new-tab', function(msg){
-        socket.broadcast.emit('new-tab', msg);
-    })
-
     socket.on('user-name',function(new_name) {
     	users.splice(users.indexOf(this_user_name), 1, new_name);
         this_user_name = new_name;
         io.emit('update_user', users);
+    });
+
+    socket.on("ready-to-start", function(msg){
+        console.log(socket.id + " ready to start")
+        start_ready[userID.indexOf(socket.id)] = true;
+        var allstarted = true;
+        for(var i=0;i<start_ready.length;i++)
+        {
+            allstarted = allstarted && start_ready;
+        }
+        if(allstarted)
+        {
+            socket.broadcast.emit("allstart", start_ready.length);
+        }
     });
 
     socket.on('disconnect', function() {

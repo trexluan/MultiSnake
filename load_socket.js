@@ -23,6 +23,11 @@ function socket_function(){
         $('#currentcount').html(currentstring);
     });
 
+    socket.on("my_user_id", function(msg){
+       $('#name').html(msg);    // set user name
+       $('#prev').text(msg);
+    });
+
     // when there is user name change, emit user event to server
     $('form#user_form').submit(function(){  
        var name = $('#user_name').val();
@@ -35,7 +40,7 @@ function socket_function(){
     });
 
     socket.on('update_user', function(users){  // users is an array containing all user names
-        $('#online_users').html("")
+        $('#online_users').html("");
         users.forEach( function(user, index) {
             $('#online_users').append($('<li>').attr('id', user).text(user)); // update the online users
        });
@@ -47,6 +52,11 @@ function socket_function(){
           editorID=msg.editorID;
           filenames=msg.filenames;
     });
+
+
+    socket.on("allstart", function(msg){
+        console.log("all users ready!");
+    })
 
     // default name
     /*

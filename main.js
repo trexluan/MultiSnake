@@ -15,8 +15,10 @@ function main() {
         $("#start").click(start);
 }
 
+
 function start() {
         $("#start").hide();
+        socket.emit("ready-to-start", $('#prev').text());
         score = 0;
         $("#score").text(score);
         if (end) {
